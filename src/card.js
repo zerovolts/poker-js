@@ -1,12 +1,14 @@
+const { capitalize } = require("./utility");
+
 class Card {
-  constructor(value, suit) {
-    this.value = value
-    this.suit = suit
+  constructor(rank, suit) {
+    this.rank = rank;
+    this.suit = suit;
   }
 
   toString() {
-    return `${this.value} of ${this.suit}`
+    return `- ${capitalize(this.rank)} of ${capitalize(this.suit)}`;
   }
 }
 
-module.exports = Card
+module.exports = Card;

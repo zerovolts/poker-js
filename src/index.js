@@ -1,9 +1,9 @@
-const Deck = require("./deck")
+const Deck = require("./deck");
+const Hand = require("./hand");
 
 const deck = new Deck(() => {
   deck.draw(cards => {
-    cards.forEach(card => {
-      console.log(card.toString())
-    })
-  })
-})
+    const hand = new Hand(cards);
+    console.log(hand.toString());
+  });
+});
