@@ -1,3 +1,5 @@
+const { groupDuplicates, compareLists } = require("./utilities");
+
 const Categories = {
   FIVE_OF_A_KIND: "FIVE_OF_A_KIND",
   STRAIGHT_FLUSH: "STRAIGHT_FLUSH",
@@ -66,31 +68,6 @@ const duplicateRankHands = {
   TWO_PAIR: [1, 2, 2], // two groups of two pairs; one different
   ONE_PAIR: [1, 1, 1, 2] // two of the same rank; all the rest different
 };
-
-// [1, 1, 2, 3, 3, 3, 4] => [[3, 3, 3], [1, 1], [4], [2]]
-const groupDuplicates = list => {
-  // group duplicate elements in sequence
-  const groups = list.reduce((acc, cur) => {
-    const initGroups = acc.slice(0, -1);
-    const lastGroup =
-      acc.slice(-1).length < 1 ? acc.slice(-1) : acc.slice(-1)[0];
-
-    return lastGroup[0] === cur
-      ? [...initGroups, [...lastGroup, cur]]
-      : [...acc, [cur]];
-  }, []);
-
-  // sort groups first by length, then by value of first element
-  return groups.sort((a, b) => {
-    if (a.length === b.length) {
-      return b[0] - a[0];
-    }
-    return b.length - a.length;
-  });
-};
-
-const compareLists = (a, b) =>
-  a.length === b.length && a.every((element, index) => element === b[index]);
 
 const isSameSuit = cards => {
   return cards.map(card => card.suit).every(suit => suit === cards[0].suit);
@@ -200,5 +177,9 @@ findBestHand = cards => {
 };
 
 module.exports = {
+  Categories,
+  nameToRank,
+  rankToName,
+  isSameSuit,
   findBestHand
 };

@@ -1,5 +1,5 @@
 const { findBestHand } = require("./categories");
-const { capitalize } = require("./utility");
+const { capitalize } = require("./utilities");
 
 class Hand {
   constructor(cards) {
@@ -15,7 +15,7 @@ class Hand {
     const { rank, category } = this.bestHand;
     const isArray = Array.isArray(rank);
     return (
-      this.cards.map(card => card.toString()).join("\n") +
+      this.cards.map(card => "- " + card.toString()).join("\n") +
       `\n\nBest Hand: ${capitalize(category)}` +
       `\nSorting Ranks: ${
         isArray ? rank.map(r => capitalize(r)).join(" -> ") : capitalize(rank)

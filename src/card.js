@@ -1,4 +1,4 @@
-const { capitalize } = require("./utility");
+const { capitalize } = require("./utilities");
 
 class Card {
   constructor(rank, suit) {
@@ -7,7 +7,7 @@ class Card {
   }
 
   toString() {
-    return `- ${capitalize(this.rank)} of ${capitalize(this.suit)}`;
+    return `${capitalize(this.rank)} of ${capitalize(this.suit)}`;
   }
 }
 
