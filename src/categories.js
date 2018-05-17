@@ -123,25 +123,21 @@ findBestHand = cards => {
   if (compareLists(counts, [2, 3])) {
     return {
       category: Categories.FULL_HOUSE,
-      rank: [
-        highestRanks[0] + " (triplet)",
-        highestRanks[1] + " (pair), ",
-        ...highestRanks.slice(1)
-      ]
+      rank: [highestRanks[0] + " (triplet)", highestRanks[1] + " (pair)"]
     };
   }
   // Flush
   if (isSameSuit(cards)) {
     return {
       category: Categories.FLUSH,
-      rank: highestRank
+      rank: highestRanks
     };
   }
   // Straight
   if (compareLists(normalizedRanks, normalizedStraightRanks)) {
     return {
       category: Categories.STRAIGHT,
-      rank: highestRanks
+      rank: highestRank
     };
   }
   // Three of a Kind

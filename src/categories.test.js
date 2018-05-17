@@ -67,13 +67,13 @@ test("findBestHand matches a four of a kind", t => {
 
 test("findBestHand matches a full house", t => {
   const cards = emptyHand.map((_, i) => new Card(6, cycleSuits()));
-  cards[1] = new Card("KING", "SPADES"); // change two to avoid four of a kind
-  cards[3] = new Card("KING", "SPADES");
+  cards[1] = new Card(13, cycleSuits()); // change two to avoid four of a kind
+  cards[3] = new Card(13, cycleSuits());
   t.is(findBestHand(cards).category, Categories.FULL_HOUSE);
 });
 
 test("findBestHand matches a flush", t => {
-  const cards = emptyHand.map((_, i) => new Card(noMatchRanks[i], "DIAMONDS"));
+  const cards = emptyHand.map((_, i) => new Card(cycleRanks(), "DIAMONDS"));
   t.is(findBestHand(cards).category, Categories.FLUSH);
 });
 
@@ -104,13 +104,10 @@ test("findBestHand matches a one pair", t => {
   const cards = emptyHand.map((_, i) => new Card(cycleRanks(), cycleSuits()));
   cards[1] = new Card(6, cycleSuits()); // pair
   cards[3] = new Card(6, cycleSuits());
-  console.log(cards);
   t.is(findBestHand(cards).category, Categories.ONE_PAIR);
 });
 
 test("findBestHand matches a high card", t => {
-  const cards = emptyHand.map(
-    (_, i) => new Card(noMatchRanks[i], cycleSuits())
-  );
+  const cards = emptyHand.map((_, i) => new Card(cycleRanks(), cycleSuits()));
   t.is(findBestHand(cards).category, Categories.HIGH_CARD);
 });
